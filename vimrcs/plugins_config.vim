@@ -8,8 +8,8 @@
 """"""""""""""""""""""""""""""
 " => Load pathogen paths
 """"""""""""""""""""""""""""""
-call pathogen#infect('~/.vim_runtime/sources_forked/{}')
 call pathogen#infect('~/.vim_runtime/sources_non_forked/{}')
+call pathogen#infect('~/.vim_runtime/sources_forked/{}')
 call pathogen#helptags()
 
 """"""""""""""""""""""""""""""
@@ -25,7 +25,7 @@ map <leader>o :BufExplorer<cr>
 """"""""""""""""""""""""""""""
 " => MRU plugin
 """"""""""""""""""""""""""""""
-let MRU_Max_Entries = 400
+let MRU_Max_Entries = 10
 map <leader>f :MRU<CR>
 
 
@@ -46,7 +46,7 @@ map <leader>j :CtrlP<cr>
 map <c-b> :CtrlPBuffer<cr>
 
 let g:ctrlp_max_height = 20
-let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee'
+let g:ctrlp_custom_ignore = 'node_modules\|^\.DS_Store\|^\.git\|^\.coffee|vendor'
 
 
 """"""""""""""""""""""""""""""
@@ -69,13 +69,18 @@ snor <c-j> <esc>i<right><c-r>=snipMate#TriggerSnippet()<cr>
 let Grep_Skip_Dirs = 'RCS CVS SCCS .svn generated'
 set grepprg=/bin/grep\ -nH
 
+""""""""""""""""""""""""""""""
+" => Vim Ad
+""""""""""""""""""""""""""""""
+let g:agprg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore vendor --ignore vagrant --ignore Vagrantfile'
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Nerd Tree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let NERDTreeShowHidden=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__']
+let NERDTreeIgnore = ['\.pyc$', '__pycache__', 'vendor']
 let g:NERDTreeWinSize=35
 map <leader>nn :NERDTreeToggle<cr>
 map <leader>nb :NERDTreeFromBookmark
@@ -85,7 +90,7 @@ map <leader>nf :NERDTreeFind<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vim-multiple-cursors
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:multi_cursor_next_key="\<C-s>"
+let g:multi_cursor_next_key="\<C-n>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -124,14 +129,6 @@ let g:lightline = {
       \ 'subseparator': { 'left': ' ', 'right': ' ' }
       \ }
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vimroom
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:goyo_width=100
-let g:goyo_margin_top = 2
-let g:goyo_margin_bottom = 2
-nnoremap <silent> <leader>z :Goyo<cr>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vim-go
@@ -159,11 +156,4 @@ func! SyntasticCheckCoffeescript()
     execute "SyntasticCheck"
     execute "Errors"
 endfunc
-nnoremap <silent> <leader>c :call SyntasticCheckCoffeescript()<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Git gutter (Git diff)
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:gitgutter_enabled=0
-nnoremap <silent> <leader>d :GitGutterToggle<cr>
+nnoremap <silent> <leader>l :call SyntasticCheckCoffeescript()<cr>
