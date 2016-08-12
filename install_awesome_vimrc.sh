@@ -12,4 +12,11 @@ source ~/.vim_runtime/my_configs.vim
 catch
 endtry' > ~/.vimrc
 
-echo "Installed the Ultimate Vim configuration successfully! Enjoy :-)"
+echo "moving tmux config"
+sudo cp -r .tmux ~/.tmux
+sudo cp .tmux.conf ~/.tmux.conf
+
+echo "sourcing tmux config"
+tmux source ~/.tmux.conf
+
+echo "Installed the Ultimate Vim configuration successfully!"
