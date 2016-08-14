@@ -72,7 +72,7 @@ set grepprg=/bin/grep\ -nH
 """"""""""""""""""""""""""""""
 " => Vim Ad
 """"""""""""""""""""""""""""""
-let g:agprg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore vendor --ignore vagrant --ignore Vagrantfile'
+let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore vendor --ignore vagrant --ignore Vagrantfile'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
